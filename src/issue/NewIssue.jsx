@@ -1,22 +1,23 @@
 import React from 'react';
 import { addIssue } from '../Api';
-import { Formik, Field } from 'formik';
-import { FormGroup, Button } from 'react-bootstrap';
+import { Formik, Form as FormikForm ,Field } from 'formik';
+import { Button, Form, Col, Row } from 'react-bootstrap';
 
 class NewIssue extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
 
-        this.onSubmit() = this.onSubmit.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
+
 
     onSubmit(values, { setSubmitting }) {
         addIssue(values);
         setSubmitting(false);
-        //this.props.onNewIssue();
-        //this.props.history.push('/');
-    }
+        this.props.onNewIssue();
+        this.props.history.push('/');
+      }
 
     render() {
 
@@ -28,7 +29,7 @@ class NewIssue extends React.Component {
             <Formik initialValues={initialValues} onSubmit={this.onSubmit}>
                 {({ isSubmitting }) => (
                     <Form as={FormikForm}>
-                        <Form.Group as={row}>
+                        <Form.Group as={Row}>
                             <Form.Label column sm="2" lg="1">
                                 Título
                             </Form.Label>
@@ -36,7 +37,7 @@ class NewIssue extends React.Component {
                                 <Form.Control name="titulo" required as={Field} />
                             </Col>
                         </Form.Group>
-                        <Form.Group as={row}>
+                        <Form.Group as={Row}>
                             <Form.Label column sm="2" lg="1">
                                 Contenido
                             </Form.Label>
@@ -44,7 +45,7 @@ class NewIssue extends React.Component {
                                 <Form.Control name="contenido" component="textarea" rows="10" as={Field} />
                             </Col>
                         </Form.Group>
-                        <Form.Group as={row}>
+                        <Form.Group as={Row}>
                             <Form.Label column sm="2" lg="1">
                                 Usuario
                             </Form.Label>
@@ -53,7 +54,7 @@ class NewIssue extends React.Component {
                             </Col>
                         </Form.Group>
 
-                        <Button type="submit" disabled={isSubmitting}></Button>
+                        <Button type="submit" disabled={isSubmitting}>Guardarrr</Button>
                     </Form>
                 )}
 
@@ -64,4 +65,5 @@ class NewIssue extends React.Component {
 
 }
 
+export default NewIssue;
 //export default withRouter(NewIssue);

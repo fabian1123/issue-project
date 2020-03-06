@@ -46,4 +46,5 @@ class IssueDetail extends React.Component {
     }    
 }
 
+export default IssueDetail;
 //export default withRouter(IssueDetail);
